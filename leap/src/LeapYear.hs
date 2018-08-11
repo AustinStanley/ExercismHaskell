@@ -1,9 +1,9 @@
 module LeapYear (isLeapYear) where
 
 isLeapYear :: Integer -> Bool
--- isLeapYear year = (year `mod` 4) == 0 && (year `mod` 100) /= 0 || (year `mod` 400) == 0
 isLeapYear year
-    | (year `mod` 400) == 0 = True
-    | (year `mod` 100) == 0 = False
-    | (year `mod` 4)   == 0 = True
-    | otherwise             = False
+    | isDivisibleBy 400 = True
+    | isDivisibleBy 100 = False
+    | isDivisibleBy 4   = True
+    | otherwise         = False
+    where isDivisibleBy n = (year `mod` n) == 0
