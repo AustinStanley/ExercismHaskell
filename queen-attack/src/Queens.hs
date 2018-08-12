@@ -21,7 +21,8 @@ canAttack :: (Int, Int) -> (Int, Int) -> Bool
 canAttack queenA queenB = isCard || isDiag 
     where isCard = fst queenA == fst queenB || snd queenA == snd queenB
           isDiag = queenA `elem` (diags queenB)
-              where diags (a, b) = foldl (\acc i -> acc ++ [(x, y) | x <- [a + i, a - i], 
-                                                                     y <- [b + i, b - i], 
-                                                                     x `elem` [1..8], 
-                                                                     y `elem` [1..8]]) [] [1..8]
+              where diags (a, b) = let range = [0..7] 
+                                   in  foldl (\acc i -> acc ++ [(x, y) | x <- [a + i, a - i], 
+                                                                         y <- [b + i, b - i], 
+                                                                         x `elem` range, 
+                                                                         y `elem` range]) [] range
