@@ -15,7 +15,7 @@ boardString white black = replaceAt white "W" . replaceAt black "B" $ boardStrin
           replaceAt (Just (a, b)) c str = 
               let idx = (a * 16 + ((filter even [0..]) !! b))
                   splitStr = splitAt idx str 
-              in  (fst splitStr) ++ (c ++ (tail . snd $ splitStr))
+              in  (fst splitStr) ++ c ++ (tail . snd $ splitStr)
 
 canAttack :: (Int, Int) -> (Int, Int) -> Bool
 canAttack queenA queenB = isCard || isDiag 
